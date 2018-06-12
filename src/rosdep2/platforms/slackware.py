@@ -77,7 +77,8 @@ class SbotoolsInstaller(PackageManagerInstaller):
     def __init__(self):
         super(SbotoolsInstaller, self).__init__(sbotools_detect)
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False, quiet=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False, quiet=False):
         if not sbotools_available():
             raise InstallFailed((SBOTOOLS_INSTALLER, 'sbotools is not installed'))
 

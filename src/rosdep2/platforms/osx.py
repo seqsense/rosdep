@@ -110,7 +110,8 @@ class MacportsInstaller(PackageManagerInstaller):
         except OSError:
             return ['Macports not-found']
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False):
         if not is_port_installed():
             raise InstallFailed((MACPORTS_INSTALLER, 'MacPorts is not installed'))
         packages = self.get_packages_to_install(resolved)

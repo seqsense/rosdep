@@ -230,7 +230,8 @@ class AptInstaller(PackageManagerInstaller):
         else:
             return pkg_command(package_or_list)
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False, quiet=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False, quiet=False):
         packages = self.get_packages_to_install(resolved, reinstall=reinstall)
         if not packages:
             return []
@@ -239,5 +240,7 @@ class AptInstaller(PackageManagerInstaller):
             base_cmd.append('-y')
         if quiet:
             base_cmd.append('-qq')
+        if no_install_recommends:
+            base_cmd.append('--no-install-recommends')
 
         return [self._get_install_commands_for_package(base_cmd, p) for p in _iterate_packages(packages, reinstall)]

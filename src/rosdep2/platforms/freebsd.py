@@ -73,7 +73,8 @@ class PkgInstaller(PackageManagerInstaller):
     def __init__(self):
         super(PkgInstaller, self).__init__(pkg_detect)
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False, quiet=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False, quiet=False):
         packages = self.get_packages_to_install(resolved, reinstall=reinstall)
         if not packages:
             return []

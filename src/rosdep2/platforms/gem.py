@@ -83,7 +83,8 @@ class GemInstaller(PackageManagerInstaller):
         gem_version = subprocess.check_output(['gem', '--version']).strip()
         return ['gem {}'.format(gem_version)]
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False, quiet=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False, quiet=False):
         if not is_gem_installed():
             raise InstallFailed((GEM_INSTALLER, 'gem is not installed'))
         packages = self.get_packages_to_install(resolved, reinstall=reinstall)

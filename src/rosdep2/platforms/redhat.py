@@ -149,7 +149,8 @@ class DnfInstaller(PackageManagerInstaller):
     def __init__(self):
         super(DnfInstaller, self).__init__(rpm_detect)
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False, quiet=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False, quiet=False):
         raw_packages = self.get_packages_to_install(resolved, reinstall=reinstall)
         packages = [rpm_expand(package) for package in raw_packages]
 
@@ -175,7 +176,8 @@ class YumInstaller(PackageManagerInstaller):
     def __init__(self):
         super(YumInstaller, self).__init__(rpm_detect)
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False, quiet=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False, quiet=False):
         raw_packages = self.get_packages_to_install(resolved, reinstall=reinstall)
         packages = [rpm_expand(package) for package in raw_packages]
 

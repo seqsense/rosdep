@@ -114,7 +114,8 @@ class PortageInstaller(PackageManagerInstaller):
     def __init__(self):
         super(PortageInstaller, self).__init__(portage_detect)
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False, quiet=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False, quiet=False):
         atoms = self.get_packages_to_install(resolved, reinstall=reinstall)
 
         cmd = self.elevate_priv(['emerge'])

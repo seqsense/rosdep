@@ -277,6 +277,8 @@ def _rosdep_main(args):
                       action='store_true', help='print just the rosdep version, then exit')
     parser.add_option('--all-versions', dest='print_all_versions', default=False,
                       action='store_true', help='print rosdep version and version of installers, then exit')
+    parser.add_option('--no-install-recommends', dest='no_install_recommends', default=False,
+                      action='store_true', help='avoid installing recommended but unnecessary dependencies')
     parser.add_option('--reinstall', dest='reinstall', default=False,
                       action='store_true', help='(re)install all dependencies, even if already installed')
     parser.add_option('--default-yes', '-y', dest='default_yes', default=False,
@@ -666,6 +668,7 @@ def error_to_human_readable(error):
 def command_install(lookup, packages, options):
     # map options
     install_options = dict(interactive=not options.default_yes, verbose=options.verbose,
+                           no_install_recommends=options.no_install_recommends,
                            reinstall=options.reinstall,
                            continue_on_error=options.robust, simulate=options.simulate, quiet=options.quiet)
 

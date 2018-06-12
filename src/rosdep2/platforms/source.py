@@ -232,7 +232,8 @@ class SourceInstaller(PackageManagerInstaller):
         except InvalidRdmanifest as ex:
             raise InvalidData(str(ex))
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False, quiet=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False, quiet=False):
         # Instead of attempting to describe the source-install steps
         # inside of the rosdep command chain, we shell out to an
         # external rosdep-source command.  This separation means that

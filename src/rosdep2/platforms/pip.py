@@ -110,7 +110,8 @@ class PipInstaller(PackageManagerInstaller):
         ]
         return version_strings
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False, quiet=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False, quiet=False):
         if not is_pip_installed():
             raise InstallFailed((PIP_INSTALLER, 'pip is not installed'))
         packages = self.get_packages_to_install(resolved, reinstall=reinstall)

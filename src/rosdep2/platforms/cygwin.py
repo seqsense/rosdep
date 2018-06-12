@@ -70,7 +70,8 @@ class AptCygInstaller(PackageManagerInstaller):
         self.as_root = False
         self.sudo_command = 'cygstart --action=runas'
 
-    def get_install_command(self, resolved, interactive=True, reinstall=False, quiet=False):
+    def get_install_command(self, resolved, interactive=True,
+                            no_install_recommends=False, reinstall=False, quiet=False):
         packages = self.get_packages_to_install(resolved, reinstall=reinstall)
         # TODO: interactive
         if not packages:
